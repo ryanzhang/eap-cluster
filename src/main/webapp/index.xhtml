@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml">
+	<ui:define name="title">
+		Cluster Test App
+    </ui:define>
+	<ui:define name="application_name">
+    	Cluster Test
+    </ui:define>
+	<ui:define name="content">
+		<f:view contentType="text/html">
+			<f:event type="preRenderView" listener="#{cluster.increaseCount()}" />
+		</f:view>
+		<h1>EAP 7 Cluster App</h1>
+		<ul>
+			<li>This is a simple web app to test the cluster configuration.</li>
+		</ul>
+		<br />
+		<p>
+			You have visited this application <strong><h:outputText
+					value="#{cluster.count}" /></strong>
+			<h:outputText value=" time." rendered="#{cluster.count == 1}" />
+			<h:outputText value=" times." rendered="#{cluster.count gt 1}" />
+		</p>
+
+		<br />
+		<p>
+			This page is being served from <strong> <h:outputText
+					value="#{cluster.server}" />
+			</strong>.
+		</p>
+		<p>
+			The JBoss EAP node name is:
+                         <strong><h:outputText value="#{cluster.jbossNodeName}" /></strong>.
+		 </p>
+<!--
+		<p>
+			JBoss EAP thinks the host name is <strong> <h:outputText
+					value="#{cluster.jbossHostName}" />
+			</strong>.<br/>
+			EAP thinks the full host name is <strong> <h:outputText
+					value="#{cluster.jbossQualifiedHostName}" />
+			</strong>.
+			</p>-->
+	       <p>
+			The base directory is:
+			<strong><h:outputText value="#{cluster.baseDir}"/></strong>
+	       </p>
+	</ui:define>
+</ui:composition>
